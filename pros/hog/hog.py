@@ -48,6 +48,7 @@ def free_bacon(score):
     # Trim pi to only (score + 1) digit(s)
     # BEGIN PROBLEM 2
     "*** YOUR CODE HERE ***"
+    pi = pi // pow(10, 101 - score - 1)
     # END PROBLEM 2
 
     return pi % 10 + 3
@@ -68,6 +69,10 @@ def take_turn(num_rolls, opponent_score, dice=six_sided):
     assert opponent_score < 100, 'The game should be over.'
     # BEGIN PROBLEM 3
     "*** YOUR CODE HERE ***"
+    if (num_rolls == 0):
+        return free_bacon(opponent_score)
+    else:
+        return roll_dice(num_rolls, dice)
     # END PROBLEM 3
 
 
@@ -76,6 +81,11 @@ def extra_turn(player_score, opponent_score):
     return (pig_pass(player_score, opponent_score) or
             swine_align(player_score, opponent_score))
 
+def gcd(a, b):
+    if b == 0:
+        return a 
+    else:
+        return gcd(b, a % b)
 
 def swine_align(player_score, opponent_score):
     """Return whether the player gets an extra turn due to Swine Align.
@@ -90,6 +100,9 @@ def swine_align(player_score, opponent_score):
     """
     # BEGIN PROBLEM 4a
     "*** YOUR CODE HERE ***"
+    if (not player_score or not opponent_score):
+        return False 
+    return gcd(player_score, opponent_score) >= 10
     # END PROBLEM 4a
 
 
@@ -112,6 +125,7 @@ def pig_pass(player_score, opponent_score):
     """
     # BEGIN PROBLEM 4b
     "*** YOUR CODE HERE ***"
+    return player_score < opponent_score and opponent_score - player_score < 3
     # END PROBLEM 4b
 
 
@@ -155,6 +169,17 @@ def play(strategy0, strategy1, score0=0, score1=0, dice=six_sided,
     # (note that the indentation for the problem 6 prompt (***YOUR CODE HERE***) might be misleading)
     # BEGIN PROBLEM 6
     "*** YOUR CODE HERE ***"
+    while (score0 < goal and score1 < goal):
+        if (not who):
+            roll_number = strategy0(score0, score1)
+            score0 += take_turn(roll_number, score1, dice)
+            if (not extra_turn(score0, score1)):
+                who = 1
+        else:
+            roll_number = strategy1(score1, score0)
+            score1 += take_turn(roll_number, score0, dice)
+            if (not extra_turn(score1, score0)):
+                who = 0
     # END PROBLEM 6
     return score0, score1
 
