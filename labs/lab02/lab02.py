@@ -125,4 +125,24 @@ def cycle(f1, f2, f3):
     19
     """
     "*** YOUR CODE HERE ***"
+    def f(n):
+        def g(x):
+            res = x
+            t = n
+            while t:
+                res = f1(res)
+                t -= 1
+                if t == 0:
+                    break
+                res = f2(res)
+                t -= 1
+                if t == 0:
+                    break
+                res = f3(res)
+                t -= 1
+                if t == 0:
+                    break
+            return res
+        return g
+    return f
 
