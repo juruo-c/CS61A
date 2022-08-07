@@ -116,31 +116,40 @@ def shifty_shifts(start, goal, limit):
     their lengths.
     """
     # BEGIN PROBLEM 6
-    assert False, 'Remove this line'
+    def f(start, goal, limit, diff):
+        if diff > limit:
+            return diff
+        if (start == "" and goal == ""):
+            return diff
+        if (start == ""):
+            return diff + len(goal)
+        if (goal == ""):
+            return diff + len(start)
+        if start[0] != goal[0]:
+            return f(start[1:], goal[1:], limit, diff + 1)
+        else:
+            return f(start[1:], goal[1:], limit, diff)
+    return f(start, goal, limit, 0)
     # END PROBLEM 6
 
 
 def pawssible_patches(start, goal, limit):
     """A diff function that computes the edit distance from START to GOAL."""
-    assert False, 'Remove this line'
 
-    if ______________: # Fill in the condition
-        # BEGIN
-        "*** YOUR CODE HERE ***"
-        # END
-
-    elif ___________: # Feel free to remove or add additional cases
-        # BEGIN
-        "*** YOUR CODE HERE ***"
-        # END
-
-    else:
-        add_diff = ... # Fill in these lines
-        remove_diff = ...
-        substitute_diff = ...
-        # BEGIN
-        "*** YOUR CODE HERE ***"
-        # END
+    def f(start, goal, limit, diff):
+        if diff > limit:
+            return diff
+        if (start == "" and goal == ""):
+            return diff
+        if (start == ""):
+            return diff + len(goal)
+        if (goal == ""):
+            return diff + len(start)
+        if start[0] != goal[0]:
+            return min(f(start[1:], goal[1:], limit, diff + 1), f(start, goal[1:], limit, diff + 1), f(start[1:], goal, limit, diff + 1))
+        else:
+            return f(start[1:], goal[1:], limit, diff)
+    return f(start, goal, limit, 0)
 
 
 def final_diff(start, goal, limit):
@@ -158,6 +167,16 @@ def report_progress(typed, prompt, user_id, send):
     # BEGIN PROBLEM 8
     "*** YOUR CODE HERE ***"
     # END PROBLEM 8
+    progress = 0
+    for i in range(len(typed)):
+        if typed[i] == prompt[i]:
+            progress += 1
+        else :
+            break
+    progress = progress / len(prompt)
+    send({'id': user_id, 'progress': progress})
+    return progress
+
 
 
 def fastest_words_report(times_per_player, words):
