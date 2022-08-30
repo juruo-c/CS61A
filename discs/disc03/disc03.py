@@ -46,7 +46,7 @@ def hailstone(n):
     return 1 + hailstone(n // 2 if n % 2 == 0 else n * 3 + 1)
 
 """
-1.4 Write a procedure merge(n1, n2) which takes numbers with digits in decreasing order and returns a single number with all of the digits of the two,
+1.4 Write a procedure merge(n1, n2) which takes numbers with digits in decreasing order and returns a single number with all of the digits of the two,
 in decreasing order. Any number merged with 0 will be that number (treat
 0 as having no digits). Use recursion.
 Hint: If you can figure out which number has the smallest digit out of
@@ -63,7 +63,13 @@ def merge(n1, n2):
     >>> merge (21, 31)
     3211
     """
-
+    if n1 == 0:
+        return n2 
+    if n2 == 0:
+        return n1
+    if n1 % 10 < n2 % 10:
+        return merge(n1 // 10, n2) * 10 + n1 % 10
+    return merge(n1, n2 // 10) * 10 + n2 % 10
 """
 1.5 Tutorial: (Optional)
 Define a function make fn repeater which takes in a one-argument function
@@ -81,13 +87,13 @@ def make_func_repeater(f, x):
     >>> incr_1(5)
     6
     """
-    def repeat(___________________):
-        if _______________________:
-            return __________________
+    def repeat(num):
+        if num == 1:
+            return f(x)
         else:
-            return __________________
+            return f(repeat(num - 1))
     
-    return _________________________
+    return repeat
 
 """ 
 1.6 Below is the iterative version of is prime, which returns True if positive
@@ -116,12 +122,12 @@ def is_prime(n):
     >>> is_prime(1)
     False
     """
-    def prime_helper(____________________):
-        if ________________________:
-            ________________________
-        elif ________________________:
-            ________________________
+    def prime_helper(k):
+        if k == n:
+            return True
+        elif n % k == 0:
+            return False
         else:
-            ________________________
+            return prime_helper(k + 1)
 
-    return __________________________
+    return n != 1 and prime_helper(2)
