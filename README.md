@@ -40,4 +40,4 @@ homeworks/labs/projects/discussions of CS61A
 我只把discussion中的代码实现题做了
 
 discussions5中的代码实现题由于要依赖tree的实现，就没搞。
-
+discussions7类的实现比较简单，就不写了。 
