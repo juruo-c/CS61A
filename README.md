@@ -9,7 +9,7 @@ homeworks/labs/projects/discussions of CS61A
 ### lab 05: Data Abstraction, Trees (Finished)
 ### Lab 06: Nonlocal, Mutability (Finished)
 ### lab 07: Object-Oriented Programming, Iterators (Finished)
-### lab 08: Linked Lists, Mutable Trees 
+### lab 08: Linked Lists, Mutable Trees (Finished)
 ### Lab 09: Midterm Review
 ### Lab 10: Scheme
 ### Lab 11: Interpreters
