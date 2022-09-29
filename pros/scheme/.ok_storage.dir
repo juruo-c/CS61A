@@ -17,3 +17,5 @@
 'Problem 15-correct', (8192, 70)
 'Problem 16-correct', (8704, 70)
 'Problem 17-correct', (9216, 70)
+'Problem EC-correct', (9728, 70)
+'Problem 18 (Optional)-correct', (10240, 70)
