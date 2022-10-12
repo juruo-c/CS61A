@@ -1,4 +1,4 @@
-# CS61A
+# CS61A fall 2020
 homeworks/labs/projects/discussions of CS61A
 
 ## labs
